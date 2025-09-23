@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521/XEPDB1
+    #username: SYSTEM
+    username: TODO_APP
+    password: Todo123
+    #password: SuperPassword
+    driver-class-name: oracle.jdbc.OracleDriver
+  jpa:
+    hibernate:
+      ddl-auto: update   # para dev; em produção use validate/none e scripts
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        # dialect: org.hibernate.dialect.OracleDialect  <- opcional; Hibernate 6 detecta automaticamente
