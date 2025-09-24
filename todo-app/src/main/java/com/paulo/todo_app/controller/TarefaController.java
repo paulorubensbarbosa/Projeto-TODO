@@ -1,6 +1,8 @@
 package com.paulo.todo_app.controller;
 
 import com.paulo.todo_app.model.Tarefa;
+import com.paulo.todo_app.model.TarefaConcluida;
+import com.paulo.todo_app.service.TarefaHistoryService;
 import com.paulo.todo_app.service.TarefaService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +13,11 @@ import java.util.List;
 @RequestMapping("/api/tarefas")
 public class TarefaController {
     private final TarefaService service;
+    private final TarefaHistoryService serviceHistory;
 
-    public TarefaController(TarefaService service){
+    public TarefaController(TarefaService service, TarefaHistoryService tarefaHistoryService){
         this.service = service;
+        this.serviceHistory = tarefaHistoryService;
     }
 
     @GetMapping
@@ -37,6 +41,11 @@ public class TarefaController {
     public ResponseEntity<Void> deletar (){
         service.deletar();
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/historico")
+    public List<TarefaConcluida> getTarefasHistory (){
+        return serviceHistory.getHistorico();
     }
 
 }
