@@ -35,7 +35,13 @@ public class TarefaService {
 
     @Transactional
     public void concluir(Long id){
-        plService.moverTarefaConcluida(id);
+        Tarefa tf = repository.findById(id).orElseThrow();
+        tf.setStatus("CONCLUIDA");
+        repository.save(tf);
+
+        repository.flush();
+
+        plService.moverTarefaConcluida(tf.getId());
     }
 
     @Transactional
