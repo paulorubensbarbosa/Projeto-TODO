@@ -1,5 +1,6 @@
 package com.paulo.todo_app.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -11,7 +12,7 @@ public class Tarefa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID_TAREFA")
+    @Column(name = "ID")
     private Long id;
 
     @Column(nullable = false, length = 200)
@@ -22,6 +23,11 @@ public class Tarefa {
 
     @Column(nullable = false, length = 20)
     private String status; //PENDENTE, EM_ANDAMENTO, CONCLUIDA
+
+    @ManyToOne
+    @JoinColumn(name = "proprietario_id")
+    @JsonBackReference
+    private Proprietario proprietario;
 
     private LocalDate dataLimite;
 
@@ -90,5 +96,13 @@ public class Tarefa {
 
     public void setCriadoEm(OffsetDateTime criadoEm) {
         this.criadoEm = criadoEm;
+    }
+
+    public Proprietario getProprietario() {
+        return proprietario;
+    }
+
+    public void setProprietario(Proprietario proprietario) {
+        this.proprietario = proprietario;
     }
 }

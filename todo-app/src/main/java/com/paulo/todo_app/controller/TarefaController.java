@@ -4,6 +4,7 @@ import com.paulo.todo_app.model.Tarefa;
 import com.paulo.todo_app.model.TarefaConcluida;
 import com.paulo.todo_app.service.TarefaHistoryService;
 import com.paulo.todo_app.service.TarefaService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +30,11 @@ public class TarefaController {
     public ResponseEntity<Tarefa> criar(@RequestBody Tarefa tarefa){
         Tarefa saved = service.criar(tarefa);
         return ResponseEntity.ok(saved);
+    }
+
+    @PostMapping("/proprietario/{id_proprietario}")
+    public ResponseEntity<Tarefa> criarComProprietario(@PathVariable Long id_proprietario, @RequestBody Tarefa tarefa){
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.criarComProprietario(id_proprietario, tarefa ));
     }
 
     @PostMapping("/{id}/concluir")

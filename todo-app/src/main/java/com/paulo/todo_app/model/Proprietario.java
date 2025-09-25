@@ -1,5 +1,6 @@
 package com.paulo.todo_app.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class Proprietario {
     private String nome;
 
     @OneToMany(mappedBy = "proprietario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Tarefa> tarefas = new ArrayList<>();
 
     public Long getId() {
