@@ -1,5 +1,6 @@
 package com.paulo.todo_app.service;
 
+import com.paulo.todo_app.dto.TarefaDTO;
 import com.paulo.todo_app.model.Proprietario;
 import com.paulo.todo_app.model.Tarefa;
 import com.paulo.todo_app.repository.ProprietarioRepository;
@@ -25,6 +26,13 @@ public class TarefaService {
         this.plService = plService;
         this.proprietarioRepository = proprietarioRepository;
     }
+
+    /*
+    todo Criar o Mapper para a tarefa, onde vai receber um TarefaDTO e retornar um Tarefa para salvar no repositório,
+    Não esquecer de setar o Status para pendente.
+
+    Verificar como vai ficar a criação da data de criação.
+    */
 
     @Transactional
     public Tarefa criar(Tarefa tarefa){

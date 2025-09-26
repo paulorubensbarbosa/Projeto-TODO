@@ -1,5 +1,7 @@
 package com.paulo.todo_app.controller;
 
+import com.paulo.todo_app.dto.ProprietarioRequest;
+import com.paulo.todo_app.dto.ProprietarioResponse;
 import com.paulo.todo_app.model.Proprietario;
 import com.paulo.todo_app.service.ProprietarioService;
 import org.springframework.http.HttpStatus;
@@ -20,7 +22,7 @@ public class ProprietarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Proprietario> criarProprietario (@RequestBody Proprietario proprietario){
+    public ResponseEntity<ProprietarioResponse> criarProprietario (@RequestBody ProprietarioRequest proprietario){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.criarProprietario(proprietario));
     }
 
